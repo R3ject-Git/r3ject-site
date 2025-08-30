@@ -10,33 +10,48 @@
       margin: 0;
     }
 
-    /* Achtergrond: herhalende PNG-tegel */
     body {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 24px;
 
-      /* fallback kleur als de afbeelding nog laadt */
       background-color: #1d1d1d;
-
-      background-image: url("Wall.png");  /* zet Wall.png in dezelfde map als index.html */
-      background-repeat: repeat;          /* tegel de afbeelding */
-      background-position: 0 0;           /* start linksboven */
-      background-size: 50%;              /* gebruik originele tegelgrootte */
-      background-attachment: fixed;       /* optioneel: blijft ‘vast’ bij scrollen */
+      background-image: url("Wall.png");
+      background-repeat: repeat;
+      background-position: 0 0;
+      background-size: 50%;  /* kleiner gemaakt, prima zo */
+      background-attachment: fixed;
     }
 
-    /* Center afbeelding */
     img {
       max-width: min(90vw, 1200px);
-      max-height: 80vh;
+      max-height: 70vh;
       display: block;
       filter: drop-shadow(0 24px 48px rgba(0,0,0,.55));
+    }
+
+    p.email {
+      margin-top: 24px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+    }
+
+    p.email a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    p.email a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <img src="R3ject_transparant.png" alt="R3JECT">
+  <p class="email"><a href="mailto:R3ject@mailfence.com">R3ject@mailfence.com</a></p>
 </body>
 </html>
