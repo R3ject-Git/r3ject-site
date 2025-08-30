@@ -2,101 +2,41 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>R3JECT</title>
   <style>
-    :root{
-      /* Makkelijk te tweaken */
-      --brick-w: 220;   /* px — breedte steen */
-      --brick-h: 80;    /* px — hoogte steen */
-      --gap: 8;         /* px — voegbreedte */
-      --mortar: #cfcfcf;/* kleur voeg */
-      --tone1: #b14c2f; /* hoofdkleur steen */
-      --tone2: #8f3e28; /* donkerder variatie */
-    }
-
     html, body {
       height: 100%;
       margin: 0;
     }
 
-    body{
-      display:flex; align-items:center; justify-content:center;
-      background:
-        /* licht vignet voor diepte */
-        radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 100%),
-        /* de SVG-tekstuur als tegel */
-        url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?>\
-<svg xmlns='http://www.w3.org/2000/svg' width='400' height='240' viewBox='0 0 400 240'>\
-  <defs>\
-    <!-- Noise voor textuurvariatie -->\
-    <filter id='noise' x='-20%' y='-20%' width='140%' height='140%'>\
-      <feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4' result='n1'/>\
-      <feColorMatrix type='saturate' values='0'/>\
-      <feComponentTransfer>\
-        <feFuncA type='table' tableValues='0 0.6'/>\
-      </feComponentTransfer>\
-    </filter>\
-    <!-- Subtiele diepte op baksteen -->\
-    <filter id='stoneShade' x='-20%' y='-20%' width='140%' height='140%'>\
-      <feTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' seed='7' result='t'/>\
-      <feDiffuseLighting in='t' surfaceScale='2' lighting-color='#ffffff' result='lit'>\
-        <feDistantLight azimuth='235' elevation='45'/>\
-      </feDiffuseLighting>\
-      <feComposite in='SourceGraphic' in2='lit' operator='arithmetic' k1='1' k2='0.6' k3='0' k4='0'/>\
-    </filter>\
-    <!-- Patroon met verspringende rijen -->\
-    <pattern id='brickPattern' patternUnits='userSpaceOnUse' width='400' height='240'>\
-      <!-- Mortar achtergrond -->\
-      <rect width='400' height='240' fill='%23cfcfcf'/>\
-      <!-- Rij A -->\
-      <g transform='translate(0,0)'>\
-        <g id='rowA'>\
-          <rect x='0'   y='0'   width='220' height='80' rx='4' ry='4' fill='%23b14c2f' filter='url(%23stoneShade)'/>\
-          <rect x='228' y='0'   width='220' height='80' rx='4' ry='4' fill='%238f3e28' filter='url(%23stoneShade)'/>\
-        </g>\
-      </g>\
-      <!-- Rij B verschoven -->\
-      <g transform='translate(-110,88)'>\
-        <use href='%23rowA'/>\
-      </g>\
-      <!-- Rij C zelfde als A maar met kleine offset voor variatie -->\
-      <g transform='translate(0,176)'>\
-        <use href='%23rowA'/>\
-      </g>\
-      <!-- Mortar-voegen (horizontaal & verticaal) -->\
-      <g opacity='0.85'>\
-        <rect y='80'  width='400' height='8' fill='%23cfcfcf'/>\
-        <rect y='168' width='400' height='8' fill='%23cfcfcf'/>\
-        <rect x='220' width='8'  height='80'  y='0'   fill='%23cfcfcf'/>\
-        <rect x='108' width='8'  height='80'  y='88'  fill='%23cfcfcf'/>\
-        <rect x='328' width='8'  height='80'  y='88'  fill='%23cfcfcf'/>\
-        <rect x='220' width='8'  height='80'  y='176' fill='%23cfcfcf'/>\
-      </g>\
-      <!-- Noise overlay voor realisme -->\
-      <rect width='400' height='240' filter='url(%23noise)' opacity='0.25'/>\
-    </pattern>\
-  </defs>\
-  <rect width='400' height='240' fill='url(%23brickPattern)'/>\
-</svg>") repeat;
-      background-size: auto, 400px 240px; /* 2e laag = tegelgrootte */ 
+    /* Achtergrond: herhalende PNG-tegel */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+
+      /* fallback kleur als de afbeelding nog laadt */
+      background-color: #1d1d1d;
+
+      background-image: url("Wall.png");  /* zet Wall.png in dezelfde map als index.html */
+      background-repeat: repeat;          /* tegel de afbeelding */
+      background-position: 0 0;           /* start linksboven */
+      background-size: auto;              /* gebruik originele tegelgrootte */
+      background-attachment: fixed;       /* optioneel: blijft ‘vast’ bij scrollen */
     }
 
-    img{
-      max-width: 90vw;
+    /* Center afbeelding */
+    img {
+      max-width: min(90vw, 1200px);
       max-height: 80vh;
+      display: block;
       filter: drop-shadow(0 24px 48px rgba(0,0,0,.55));
-    }
-
-    /* Donkere overlay om het centrum te focussen (optioneel) */
-    body::after{
-      content:'';
-      position:fixed; inset:0;
-      pointer-events:none;
-      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 40%, rgba(0,0,0,.35) 100%);
     }
   </style>
 </head>
 <body>
-  <img src="R3ject_transparant.png" alt="R3JECT Logo">
+  <img src="R3ject_transparant.png" alt="R3JECT">
 </body>
 </html>
