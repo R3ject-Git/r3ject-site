@@ -1,3 +1,50 @@
+<style>
+  :root{
+    /* Pas deze waardes gerust aan */
+    --brick-w: 140px;    /* breedte van 1 steen */
+    --brick-h: 60px;     /* hoogte van 1 steen */
+    --gap: 8px;          /* voeg (mortar) dikte */
+    --brick1: #d46a2e;   /* hoofdkleur steen */
+    --brick2: #bf5a22;   /* variatiekleur steen */
+    --mortar: #1a1a1a;   /* kleur van het voegwerk */
+  }
+
+  body{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Bakstenen patroon + subtiele vignette */
+    background:
+      radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 100%),
+      /* horizontale voegen */
+      linear-gradient(var(--mortar) var(--gap), transparent 0) 0 0 /
+        100% calc(var(--brick-h) + var(--gap)),
+      /* verticale voegen rij A */
+      linear-gradient(90deg, var(--mortar) var(--gap), transparent 0) 0 0 /
+        calc(var(--brick-w) * 2) calc(var(--brick-h) + var(--gap)),
+      /* verticale voegen rij B (verspringing) */
+      linear-gradient(90deg, var(--mortar) var(--gap), transparent 0)
+        var(--brick-w) calc((var(--brick-h) + var(--gap)) / 2) /
+        calc(var(--brick-w) * 2) calc(var(--brick-h) + var(--gap)),
+      /* kleurschakering in de stenen */
+      repeating-linear-gradient(90deg,
+        var(--brick1) 0 var(--brick-w),
+        var(--brick2) var(--brick-w) calc(var(--brick-w) * 2)
+      );
+    background-color: var(--brick1);
+  }
+
+  img{
+    max-width: 90%;
+    max-height: 90%;
+    /* optioneel: wat diepte */
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,.6));
+  }
+</style>
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
